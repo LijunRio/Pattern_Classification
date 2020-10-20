@@ -25,23 +25,20 @@ $$
    \end{array}\right.
    $$
    引入指示函数$I(\cdot),$利用指示函数$I(\cdot)$来代表$x$是否属于某个集合。如果属于集合则值为1，否则为0：
-   $$
-   {\displaystyle I_{A}(x)={\begin{cases}1 ,若x\in A\\
+   $${\displaystyle I_{A}(x)={\begin{cases}1 ,若x\in A\\
    0,若x\notin A
-   \end{cases}}\quad }
+   \end{cases}}\quad }$$
+   
+   引入指示函数$I(\cdot)$后，最大似然如下：
 $$
-   
-   
-引入指示函数$I(\cdot)$后，最大似然如下：
-   $$
-   \begin{aligned}
+\begin{aligned}
    p(\mathcal{D} \mid \theta) &=\prod_{k=1}^{n} p\left(x_{k} \mid \theta\right) \\
    &=\prod_{k=1}^{n} \frac{1}{\theta} I\left(0 \leq x_{k} \leq \theta\right) \\
    &=\frac{1}{\theta^{n}} I\left(\theta \geq \max _{k} x_{k}\right) I\left(\min _{k} x_{k} \geq 0\right)
    \end{aligned}
-   $$
-   如果$\theta$比 $x_{k} $ 的最大值小，那么当 $\theta \geq \max _{k} x_{k}$的时候，$I(\cdot)$等于0。且$1 / \theta^{n}$会随着 $\theta$的增加而逐渐减小，所以最大似然函数在$\hat{\theta}=\max _{k} x_{k}$取地最大值。
-   
+$$
+如果$\theta$比 $x_{k} $ 的最大值小，那么当 $\theta \geq \max _{k} x_{k}$的时候，$I(\cdot)$等于0。且$1 / \theta^{n}$会随着 $\theta$的增加而逐渐减小，所以最大似然函数在$\hat{\theta}=\max _{k} x_{k}$取地最大值。
+
 2. 如图所示：
 
    <img src="Assignment-2黎郡.assets/image-20201017105205963.png" alt="image-20201017105205963" style="zoom:50%;" />
@@ -60,13 +57,12 @@ Assume we have training data from a Gaussian distribution of known covariance Σ
 1. 均值$\mu$的MAP最大后验估计是什么？
 
    求$\mu$的最大后验概率就是求令$l(\boldsymbol{\mu}) p(\boldsymbol{\mu})$取最大值的参数向量$\mu$。因此我们可以根据公式列出如下式子：
-   $$
-   l(\boldsymbol{\mu}) p(\boldsymbol{\mu})=\ln [p(\mathcal{D}\mid \boldsymbol{\mu}) p(\boldsymbol{\mu})]
-   $$
-   
 
-   根据题意可知训练样本符合高斯分布，所以
+$$
+l(\boldsymbol{\mu}) p(\boldsymbol{\mu})=\ln [p(\mathcal{D}\mid \boldsymbol{\mu}) p(\boldsymbol{\mu})]
+$$
 
+根据题意可知训练样本符合高斯分布，所以
 
 $$
 \begin{array}
@@ -81,7 +77,9 @@ $$
 ln [p(\mathcal{D} \mid \boldsymbol{\mu})]&=-\frac{n}{2} \ln \left[(2 \pi)^{d}|\mathbf{\Sigma}|\right]-\sum_{k=1}^{n} \frac{1}{2}\left(\mathbf{x}_{k}-\boldsymbol{\mu}\right)^{t} \mathbf{\Sigma}^{-1}\left(\mathbf{x}_{k}-\boldsymbol{\mu}\right)
 \end{array}
 $$
-​		并且均值$\mu$本身是随机取值，服从均值为$m_0$，协方差为$\Sigma_0$的高斯分布，所以$p(\mu)$表示如下：
+
+
+并且均值$\mu$本身是随机取值，服从均值为$m_0$，协方差为$\Sigma_0$的高斯分布，所以$p(\mu)$表示如下：
 $$
 \begin{aligned}
 &p(\boldsymbol{\mu})=\frac{1}{(2 \pi)^{d / 2}\left|\mathbf{\Sigma}_{0}\right|^{1 / 2}} \exp \left[-\frac{1}{2}\left(\boldsymbol{\mu}-\mathbf{m}_{0}\right)^{t} \mathbf{\Sigma}_{o}^{-1}\left(\boldsymbol{\mu}-\mathbf{m}_{0}\right)\right]\\
@@ -89,7 +87,7 @@ $$
 &\ln[p(\boldsymbol{\mu})]=-\frac{1}{2} \ln \left[(2 \pi)^{d}|\mathbf{\Sigma_{0}}|\right]-\frac{1}{2}\left(\mathbf{\mu}-\mathbf{m}_{0}\right)^{t} \mathbf{\Sigma_{0}}^{-1}\left(\mathbf{\mu}-\mathbf{m}_{0}\right)\\
 \end{aligned}
 $$
-​		所以对于均值$\mu$的MAP估计就是求下面式子的最大值：
+所以对于均值$\mu$的MAP估计就是求下面式子的最大值：
 $$
 \begin{aligned}
 \hat{\boldsymbol{\mu}}=& \arg \max _{\boldsymbol{\mu}}\left\{\left[-\frac{n}{2} \ln \left[(2 \pi)^{d}|\boldsymbol{\Sigma}|\right]-\sum_{k=1}^{n} \frac{1}{2}\left(\mathbf{x}_{k}-\boldsymbol{\mu}\right)^{t} \boldsymbol{\Sigma}^{-1}\left(\mathbf{x}_{k}-\boldsymbol{\mu}\right)\right]\right. \\
@@ -100,26 +98,31 @@ $$
 \right\}
 \end{aligned}
 $$
+
+
 2. 假设使用线性变化来变化坐标$x^{'}=Ax$,其中A为非奇异矩阵。那么MAP能过对变换以后的$\mu^{'}$做出正确的估计吗？
 
    假设进行线性变化后的均值很方差分别为$\mu^{'}$和$\Sigma^{'}$，根据$x^{'}=Ax$可以计算得$\mu^{'}$和$\Sigma^{'}$得值如下：
-   $$
-   \boldsymbol{\mu}^{\prime}=\mathcal{E}\left[\mathbf{x}^{\prime}\right]=\mathcal{E}[\mathbf{A} \mathbf{x}]=\mathbf{A} \mathcal{E}[\mathbf{x}]=\mathbf{A} \boldsymbol{\mu}
-   $$
 
-   $$
-   \begin{aligned}
+$$
+\boldsymbol{\mu}^{\prime}=\mathcal{E}\left[\mathbf{x}^{\prime}\right]=\mathcal{E}[\mathbf{A} \mathbf{x}]=\mathbf{A} \mathcal{E}[\mathbf{x}]=\mathbf{A} \boldsymbol{\mu}
+$$
+
+
+$$
+\begin{aligned}
    \boldsymbol{\Sigma}^{\prime} &=\mathcal{E}\left[\left(\mathbf{x}^{\prime}-\boldsymbol{\mu}^{\prime}\right)\left(\mathbf{x}^{\prime}-\boldsymbol{\mu}^{\prime}\right)^{t}\right] \\
    &=\mathcal{E}\left[\left(\mathbf{A} \mathbf{x}^{\prime}-\mathbf{A} \boldsymbol{\mu}^{\prime}\right)\left(\mathbf{A} \mathbf{x}^{\prime}-\mathbf{A} \boldsymbol{\mu}^{\prime}\right)^{t}\right] \\
    &=\mathcal{E}\left[\mathbf{A}\left(\mathbf{x}^{\prime}-\boldsymbol{\mu}^{\prime}\right)\left(\mathbf{x}^{\prime}-\boldsymbol{\mu}^{\prime}\right)^{t} \mathbf{A}^{t}\right] \\
    &=\mathbf{A} \mathcal{E}\left[\left(\mathbf{x}^{\prime}-\boldsymbol{\mu}^{\prime}\right)\left(\mathbf{x}^{\prime}-\boldsymbol{\mu}^{\prime}\right)^{t}\right] \mathbf{A}^{t} \\
    &=\mathbf{A} \mathbf{\Sigma} \mathbf{A}^{t}
    \end{aligned}
-   $$
+$$
+​			将$\mu^{'}$和$\Sigma^{'}$带入最大似然公式中可得:
 
-   将$\mu^{'}$和$\Sigma^{'}$带入最大似然公式中可得:
-   $$
-   \begin{aligned}
+
+$$
+\begin{aligned}
    \ln \left[p\left(\mathcal{D}^{\prime} \mid \boldsymbol{\mu}^{\prime}\right)\right] &=\ln \left(\prod_{k=1}^{n} p\left(\mathbf{x}_{k}^{\prime} \mid \boldsymbol{\mu}^{\prime}\right)\right) \\
    &=\ln \left(\prod_{k=1}^{n} p\left(\mathbf{A} \mathbf{x}_{k} \mid \mathbf{A} \boldsymbol{\mu}\right)\right) \\
    &=\sum_{k=1}^{n} \ln \left[p\left(\mathbf{A} \mathbf{x}_{k} \mid \mathbf{A} \boldsymbol{\mu}\right)\right] \\
@@ -128,26 +131,24 @@ $$
    &=-\frac{n}{2} \ln \left[(2 \pi)^{d}\left|\mathbf{A} \boldsymbol{\Sigma} \mathbf{A}^{t}\right|\right]-\sum_{k=1}^{n} \frac{1}{2}\left(\mathbf{x}_{k}-\boldsymbol{\mu}\right)^{t}\left(\mathbf{A}^{t}\left(\mathbf{A}^{-1}\right)^{t}\right) \boldsymbol{\Sigma}^{-1}\left(\mathbf{A}^{-1} \mathbf{A}\right)\left(\mathbf{x}_{k}-\boldsymbol{\mu}\right) \\
    &=-\frac{n}{2} \ln \left[(2 \pi)^{d}\left|\mathbf{A} \boldsymbol{\Sigma} \mathbf{A}^{t}\right|\right]-\sum_{k=1}^{n} \frac{1}{2}\left(\mathbf{x}_{k}-\boldsymbol{\mu}\right)^{t} \mathbf{\Sigma}^{-1}\left(\mathbf{x}_{k}-\boldsymbol{\mu}\right)
    \end{aligned}
-   $$
-   并且同样的$\boldsymbol{\mu}^{\prime}$本身符合高斯分布，则$p\left(\boldsymbol{\mu}^{\prime}\right)$推导如下：
-   $$
-   \begin{aligned}
+$$
+​			并且同样的$\boldsymbol{\mu}^{\prime}$本身符合高斯分布，则$p\left(\boldsymbol{\mu}^{\prime}\right)$推导如下：
+
+
+$$
+\begin{aligned}
    p\left(\boldsymbol{\mu}^{\prime}\right) &=\frac{1}{(2 \pi)^{d / 2}\left|\mathbf{\Sigma}_{0}^{\prime}\right|^{1 / 2}} \exp \left[-\frac{1}{2}\left(\boldsymbol{\mu}^{\prime}-\mathbf{m}_{0}\right)^{t} \mathbf{\Sigma}_{0}^{-1}\left(\boldsymbol{\mu}^{\prime}-\mathbf{m}_{0}\right)\right] \\
    &=\frac{1}{(2 \pi)^{d / 2}\left|\mathbf{\Sigma}_{0}^{\prime}\right|^{1 / 2}} \exp \left[-\frac{1}{2}\left(\mathbf{A} \mu-\mathbf{A} \mathbf{m}_{0}\right)^{t}\left(\mathbf{A} \mathbf{\Sigma}_{0} \mathbf{A}^{t}\right)^{-1}\left(\mathbf{A} \boldsymbol{\mu}-\mathbf{A} \mathbf{m}_{0}\right)\right] \\
    &=\frac{1}{(2 \pi)^{d / 2}\left|\mathbf{\Sigma}_{0}^{\prime}\right|^{1 / 2}} \exp \left[-\frac{1}{2}\left(\boldsymbol{\mu}-\mathbf{m}_{0}\right)^{t} \mathbf{A}^{t}\left(\mathbf{A}^{-1}\right)^{t} \mathbf{\Sigma}_{0}^{-1} \mathbf{A}^{-1} \mathbf{A}\left(\boldsymbol{\mu}-\mathbf{m}_{0}\right)\right] \\
    &=\frac{1}{(2 \pi)^{d / 2}\left|\mathbf{\Sigma}_{0}^{\prime}\right|^{1 / 2}} \exp \left[-\frac{1}{2}\left(\boldsymbol{\mu}-\mathbf{m}_{0}\right)^{t} \mathbf{\Sigma}_{0}^{-1}\left(\boldsymbol{\mu}-\mathbf{m}_{0}\right)\right]\\
    即ln[p\left(\boldsymbol{\mu}^{\prime}\right)]&=-\frac{1}{2} \ln \left[(2 \pi)^{d}|\mathbf{\Sigma_{0}}|\right]-\frac{1}{2}\left(\mathbf{\mu}-\mathbf{m}_{0}\right)^{t} \mathbf{\Sigma_{0}}^{-1}\left(\mathbf{\mu}-\mathbf{m}_{0}\right)\\
    \end{aligned}
-   $$
+$$
 
-   
 
-   因此对于$\mu^{'}$的MAP估计变为：
-
-   
-
-   $$
-   \begin{aligned}
+​				因此对于$\mu^{'}$的MAP估计变为：
+$$
+\begin{aligned}
    \hat{\boldsymbol{\mu}^{'}}=& \arg \max _{\boldsymbol{\mu}}\left\{\left[-\frac{n}{2} \ln \left[(2 \pi)^{d}|\boldsymbol{\mathbf{A} \boldsymbol{\Sigma} \mathbf{A}^{t}}|\right]-\sum_{k=1}^{n} \frac{1}{2}\left(\mathbf{x}_{k}-\boldsymbol{\mu}\right)^{t} \boldsymbol{\Sigma}^{-1}\left(\mathbf{x}_{k}-\boldsymbol{\mu}\right)\right]\right. \\
    &\left.+
    \left[
@@ -155,10 +156,10 @@ $$
    \right]
    \right\}
    \end{aligned}
-   $$
-   与原来的$\hat{\mu}$进行比较：
-   $$
-   \begin{aligned}
+$$
+​				与原来的$\hat{\mu}$进行比较：
+$$
+\begin{aligned}
    \hat{\boldsymbol{\mu}}=& \arg \max _{\boldsymbol{\mu}}\left\{\left[-\frac{n}{2} \ln \left[(2 \pi)^{d}|\boldsymbol{\Sigma}|\right]-\sum_{k=1}^{n} \frac{1}{2}\left(\mathbf{x}_{k}-\boldsymbol{\mu}\right)^{t} \boldsymbol{\Sigma}^{-1}\left(\mathbf{x}_{k}-\boldsymbol{\mu}\right)\right]\right. \\
    &\left.+
    \left[
@@ -166,11 +167,8 @@ $$
    \right]
    \right\}
    \end{aligned}
-   $$
-   比较 $\hat{\mu}$ 和$\hat{\boldsymbol{\mu}}^{\prime}$可以发现，两个等式是否相等取决于$\left|\mathbf{A} \boldsymbol{\Sigma} \mathbf{A}^{t}\right|$,所以可以表明MAP对于$\hat{\boldsymbol{\mu}}^{\prime}$进行了很好的估计。
-
-
-
+$$
+​				比较 $\hat{\mu}$ 和$\hat{\boldsymbol{\mu}}^{\prime}$可以发现，两个等式是否相等取决于$\left|\mathbf{A} \boldsymbol{\Sigma} \mathbf{A}^{t}\right|$,所以可以表明MAP对于$\hat{\boldsymbol{\mu}}^{\prime}$进行了很好的估计。
 ## Question 3
 
 Consider data $D=\left\{\left(\begin{array}{l}1 \\ 1\end{array}\right),\left(\begin{array}{l}3 \\ 3\end{array}\right),\left(\begin{array}{l}2 \\ *\end{array}\right)\right\},$ sampled from a two-dimensional (separable) distribution $p\left(x_{1}, x_{2}\right)=p\left(x_{1}\right) p\left(x_{2}\right),$with $(1) .$ As usual, $*$ represents a missing feature value.
@@ -181,9 +179,8 @@ $\mathrm{p}\left(\mathrm{x}_{1}\right) \sim\left\{\begin{array}{cc}\frac{1}{\the
 
 ### Answer 3
 
-Our data set is $\mathcal{D}=\left\{\left(\begin{array}{l}1 \\ 1\end{array}\right),\left(\begin{array}{l}3 \\ 3\end{array}\right),\left(\begin{array}{l}2 \\ *\end{array}\right)\right\},$ where $*$ represents an unknown value for the
-$x_{2}$ component of the third data point.
-(a) For the $\mathbf{E}$ step we have:
+根据题意，数据集 $\mathcal{D}=\left\{\left(\begin{array}{l}1 \\ 1\end{array}\right),\left(\begin{array}{l}3 \\ 3\end{array}\right),\left(\begin{array}{l}2 \\ *\end{array}\right)\right\},$ 其中 $*$ 代表第二项分布中缺失的数据
+(1) 对于第 $\mathbf{E}$ step 而言:
 $$
 \begin{aligned}
 Q\left(\boldsymbol{\theta} ; \boldsymbol{\theta}^{0}\right)=& \mathcal{E}_{x_{32}}\left[\ln p\left(\mathbf{x}_{g}, \mathbf{x}_{b} ; \boldsymbol{\theta}\right) \mid \boldsymbol{\theta}^{0}, \mathcal{D}_{g}\right] \\
@@ -193,39 +190,47 @@ Q\left(\boldsymbol{\theta} ; \boldsymbol{\theta}^{0}\right)=& \mathcal{E}_{x_{32
 +\ln p\left(\mathbf{x}_{2} \mid \boldsymbol{\theta}\right)\int_{-\infty}^{\infty}p\left(x_{32} \mid \boldsymbol{\theta}^{0}, x_{31}=2\right) d x_{32}\\
 &+\int_{-\infty}^{\infty} \ln p\left(\mathbf{x}_{3} \mid \boldsymbol{\theta}\right) \cdot p\left(x_{32} \mid \boldsymbol{\theta}^{0}, x_{31}=2\right) d x_{32} \\
 
-\\
-&\because \int_{-\infty}^{\infty}p\left(x_{32} \mid \boldsymbol{\theta}^{0}, x_{31}=2\right) d x_{32}=1
-\\
-
+&其中\because \int_{-\infty}^{\infty}p\left(x_{32} \mid \boldsymbol{\theta}^{0}, x_{31}=2\right) d x_{32}=1\\
 \therefore Q\left(\boldsymbol{\theta} ; \boldsymbol{\theta}^{0}\right)=& \ln p\left(\mathbf{x}_{1} \mid \boldsymbol{\theta}\right)+\ln p\left(\mathbf{x}_{2} \mid \boldsymbol{\theta}\right)+\int_{-\infty}^{\infty} \ln p\left(\mathbf{x}_{3} \mid \boldsymbol{\theta}\right) \cdot p\left(x_{32} \mid \boldsymbol{\theta}^{0}, x_{31}=2\right) d x_{32}
 \\
 =& \ln p\left(\mathbf{x}_{1} \mid \boldsymbol{\theta}\right)+\ln p\left(\mathbf{x}_{2} \mid \boldsymbol{\theta}\right)+\int_{-\infty}^{\infty}
 \ln p\left(\left(\begin{array}{c}2 \\
+
 x_{32}\end{array}\right) \mid \boldsymbol{\theta}\right)\cdot
 \begin{matrix}
 \underbrace{
-\frac{p\left(\left(\begin{array}{c}2 \\x_{32}\end{array}\right) \mid \boldsymbol{\theta}^{0}\right)}{\int_{-\infty}^{\infty}
-\ln p\left(\left(\begin{array}{c}2 \\
-x_{32}^{'}\end{array}\right) \mid \boldsymbol{\theta^{0}}\right)}
+\frac{p\left(\left(\begin{array}{c}2 \\x_{32}\end{array}\right) \mid \boldsymbol{\theta}^{0}\right)}{\int_{-\infty}^{\infty}p\left(\left(\begin{array}{c}2 \\
+x_{32}^{'}\end{array}\right) \mid \boldsymbol{\theta^{0}}\right)d x^{'}_{31} \\}
+d x_{32}
 }
 \\ {1/(2e)}\end{matrix}
-d x_{32} \\
+\\
+又\because&{\int_{-\infty}^{\infty}p\left(\left(\begin{array}{c}2 \\x_{32}^{'}\end{array}\right) \mid \boldsymbol{\theta^{0}}\right)d x^{'}_{31}}=\frac{1}{2}e^{-1}=\frac{1}{2e}
 
-=& \ln p\left(\mathbf{x}_{1} \mid \boldsymbol{\theta}\right)+\ln p\left(\mathbf{x}_{2} \mid \boldsymbol{\theta}\right)+2 e \int_{-\infty}^{\infty} \ln p\left(\left(\begin{array}{c}2 \\
+
+\\
+
+\therefore Q\left(\boldsymbol{\theta} ; \boldsymbol{\theta}^{0}\right)=& \ln p\left(\mathbf{x}_{1} \mid \boldsymbol{\theta}\right)+\ln p\left(\mathbf{x}_{2} \mid \boldsymbol{\theta}\right)+2 e \int_{-\infty}^{\infty} \ln p\left(\left(\begin{array}{c}2 \\
 x_{32}\end{array}\right) \mid \boldsymbol{\theta}\right) \cdot p\left(\left(\begin{array}{c}2 \\x_{32}\end{array}\right) \mid \boldsymbol{\theta}^{0}\right) d x_{32} \\
 
 =& \ln p\left(\mathbf{x}_{1} \mid \boldsymbol{\theta}\right)+\ln p\left(\mathbf{x}_{2} \mid \boldsymbol{\theta}\right)+K\\
 \end{aligned}
 $$
-There are three cases for $K:$
+
+​	根据三种情况讨论 $K:$
+
 1. $3 \leq \theta_{2} \leq 4$ :
+
 $$
 \begin{aligned}
 K &=\frac{1}{4} \int_{0}^{\theta_{2}} \ln \left(\frac{1}{\theta_{1}} e^{-2 \theta_{1}} \frac{1}{\theta_{2}}\right) d x_{32} \\
 &=\frac{1}{4} \theta_{2} \ln \left(\frac{1}{\theta_{1}} e^{-2 \theta_{1}} \frac{1}{\theta_{2}}\right)
 \end{aligned}
 $$
+
+
 2. $\theta_{2} \geq 4$
+
 $$
 \begin{aligned}
 K &=\frac{1}{4} \int_{0}^{4} \ln \left(\frac{1}{\theta_{1}} e^{-2 \theta_{1}} \frac{1}{\theta_{2}}\right) d x_{32} \\
@@ -233,8 +238,10 @@ K &=\frac{1}{4} \int_{0}^{4} \ln \left(\frac{1}{\theta_{1}} e^{-2 \theta_{1}} \f
 &=\ln \left(\frac{1}{\theta_{1}} e^{-2 \theta_{1}} \frac{1}{\theta_{2}}\right)
 \end{aligned}
 $$
-3. Otherwise $K=0$.
-Thus we have
+
+
+3. 否则 $K=0$.
+此时可以求得：
 
 $$
 \begin{aligned}
@@ -244,6 +251,38 @@ Q\left(\boldsymbol{\theta} ; \boldsymbol{\theta}^{0}\right) &=\ln p\left(\mathbf
 &=-4 \theta_{1}-2 \ln \left(\theta_{1} \theta_{2}\right)+K
 \end{aligned}
 $$
+
+​	根据$\theta_{2}$的不同取值范围，可以将条件概率归一化为：
+$$
+\int_{-\infty}^{\infty} p\left(\mathbf{x}_{1}\right) d x_{1}=1\\
+或：\\
+\int_{-\infty}^{\infty} \frac{1}{\theta_{1}} e^{-\theta_{1} x_{1}} d x_{1}=1\\
+根据上式子可得\theta_{1}=1$
+$$
+2.求使得$Q\left(\theta, \theta^{0}\right)$最大的那个$\theta$（EM算法中的M步）
+
+​	此时又两种情况
+
+1. $3 \leq \theta_{2} \leq 4$
+$$
+Q\left(\boldsymbol{\theta} ; \boldsymbol{\theta}^{0}\right)=-4-\left(2 \ln \theta_{2}+\frac{1}{4} \theta_{2}\left(2+\ln \theta_{2}\right)\right)
+$$
+​		注意此时为一个单调函数，因此可以理解为：
+$$
+\arg \max _{\theta_{2}} Q\left(\theta ; \theta^{0}\right)=3, 就是 \max Q\left(\boldsymbol{\theta} ; \boldsymbol{\theta}^{0}\right) \simeq-8.5212
+$$
+
+2. $\theta_{2} \geq 4$ :
+  $$
+  Q\left(\theta ; \theta^{0}\right)=-6-3 \ln \theta_{2}
+  $$
+  同理这是一个单调函数，则：
+  $$
+  \arg \max _{\theta_{2}} Q\left(\boldsymbol{\theta} ; \boldsymbol{\theta}^{0}\right)=4,即, \max Q\left(\boldsymbol{\theta} ; \boldsymbol{\theta}^{0}\right) \simeq
+  -10.1589
+  $$
+
+  则： $\boldsymbol{\theta}=\left(\begin{array}{ll}1 & 3\end{array}\right)^{t}$
 
 
 
@@ -289,6 +328,8 @@ $$
 &=\frac{1}{\sqrt{2 \pi} h_{n} \sigma} \frac{h_{n} \sigma}{\sqrt{h_{n}^{2}+\sigma^{2}}} \exp \left[-\frac{1}{2}\left(\frac{x^{2}}{h_{n}^{2}}+\frac{\mu^{2}}{\sigma^{2}}-\frac{\alpha^{2}}{\theta^{2}}\right)\right]
 \end{aligned}
 $$
+
+
 The argument of the exponentiation can be expressed as follows
 $$
 \begin{aligned}
@@ -297,10 +338,14 @@ $$
 &=\frac{(x-\mu)^{2}}{h_{n}^{2}+\sigma^{2}}
 \end{aligned}
 $$
+
+
 We substitute this back to find
 $$
 \bar{p}_{n}(x)=\frac{1}{\sqrt{2 \pi} \sqrt{h_{n}^{2}+\sigma^{2}}} \exp \left[-\frac{1}{2} \frac{(x-\mu)^{2}}{h_{n}^{2}+\sigma^{2}}\right]
 $$
+
+
 which is the form of a Gaussian, denoted
 $$
 \bar{p}_{n}(x) \sim N\left(\mu, h_{n}^{2}+\sigma^{2}\right)
